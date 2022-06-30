@@ -1,6 +1,7 @@
 import 'package:evoting_mobile/provider/kandidat_provider.dart';
 import 'package:evoting_mobile/provider/ormawa_provider.dart';
 import 'package:evoting_mobile/provider/pemira_provider.dart';
+import 'package:evoting_mobile/provider/voting_provider.dart';
 import 'package:evoting_mobile/shared/shared.dart';
 import 'package:evoting_mobile/view/pages/pages.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
+import 'provider/faceRecognition_provider.dart';
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // _cameras = await availableCameras();
   await GetStorage.init();
   runApp(MyApp());
 }
@@ -20,8 +25,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage session = GetStorage();
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<VotingProvider>(create: (_) => VotingProvider()),
+        ChangeNotifierProvider<FacerecognitionProvider>(
+            create: (_) => FacerecognitionProvider()),
         ChangeNotifierProvider<PemiraProvider>(create: (_) => PemiraProvider()),
         ChangeNotifierProvider<OrmawaProvider>(create: (_) => OrmawaProvider()),
         ChangeNotifierProvider<KandidatProvider>(
@@ -53,7 +62,7 @@ class MyApp extends StatelessWidget {
           ),
           colorScheme: ColorScheme.fromSwatch().copyWith(secondary: mainColor),
         ),
-        home: OnBoardingPage(),
+        home: session.hasData("id") ? MainPage() : OnBoardingPage(),
       ),
     );
   }

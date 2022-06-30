@@ -12,8 +12,9 @@ class _FormLoginPageState extends State<FormLoginPage> {
   Future pickImageCamera() async {
     try {
       final image = await ImagePicker().pickImage(
-          source: ImageSource.camera,
-          preferredCameraDevice: CameraDevice.front);
+        source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.front,
+      );
 
       if (image == null) return;
 
@@ -27,7 +28,53 @@ class _FormLoginPageState extends State<FormLoginPage> {
 
   Future getFacecognition() async {
     await FacerecognitionRemoteData()
-        .getFacecognition(image!, _nimController.text);
+        .getFacecognition(image!, _nimController.text)
+        .then((value) {
+      if (value['status'] == 200) {
+        GetStorage session = GetStorage();
+        session.write('foto', value['data']['foto']);
+        session.write('id', value['data']['id']);
+        session.write('id_jurusan', value['data']['id_jurusan']);
+        session.write('nim', value['data']['nim']);
+        session.write('nama', value['data']['nama']);
+        session.write('kelas', value['data']['kelas']);
+        session.write('angkatan', value['data']['angkatan']);
+        session.write('sudah_vote', value['data']['sudah_vote']);
+
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Selamat !'),
+                  content: Text('Data anda berhasil terverifikasi'),
+                  actions: <Widget>[
+                    ElevatedButton(
+                      child: Text('OK'),
+                      onPressed: () {
+                        Get.to(() => SuccessPage());
+                      },
+                    )
+                  ],
+                ));
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Gagal'),
+            content: Text('coba lagi'),
+            actions: <Widget>[
+              ElevatedButton(
+                child: Text('OK'),
+                onPressed: () {
+                  // Get.to(() => FormLoginPage());
+                  Get.back();
+                  // _nimController = "";
+                },
+              )
+            ],
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -49,68 +96,61 @@ class _FormLoginPageState extends State<FormLoginPage> {
               SizedBox(
                 height: 60,
               ),
-              Positioned(
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(8),
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    Material(
-                      elevation: 5,
-                      borderRadius: BorderRadius.circular(8),
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.height * 0.23,
-                            height: MediaQuery.of(context).size.height * 0.23,
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: Container(
-                              width: MediaQuery.of(context).size.height * 0.23,
-                              height: MediaQuery.of(context).size.height * 0.23,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: image != null
-                                    ? Image.file(
-                                        image!,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : Icon(
-                                        Icons.person,
-                                        size: 150,
-                                        color: Colors.grey[300],
-                                      ),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: -5,
-                            right: -5,
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                color: mainColor,
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Align(
-                                  child: IconButton(
-                                iconSize: 20,
-                                icon: Icon(Icons.camera_alt_rounded,
-                                    color: Colors.white),
-                                onPressed: pickImageCamera,
-                              )),
-                            ),
-                          )
-                        ],
+                    Container(
+                      width: MediaQuery.of(context).size.height * 0.23,
+                      height: MediaQuery.of(context).size.height * 0.23,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.height * 0.23,
+                        height: MediaQuery.of(context).size.height * 0.23,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: image != null
+                              ? Image.file(
+                                  image!,
+                                  fit: BoxFit.cover,
+                                )
+                              : Icon(
+                                  Icons.person,
+                                  size: 150,
+                                  color: Colors.grey[300],
+                                ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -5,
+                      right: -5,
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: mainColor,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Align(
+                            child: IconButton(
+                          iconSize: 20,
+                          icon: Icon(Icons.camera_alt_rounded,
+                              color: Colors.white),
+                          onPressed: pickImageCamera,
+                        )),
                       ),
                     ),
                   ],
@@ -144,9 +184,14 @@ class _FormLoginPageState extends State<FormLoginPage> {
               SizedBox(
                 height: 20,
               ),
-              // ElevatedButton(onPressed: () {}, child: Text('Masuk'))
               InkWell(
-                onTap: () => Get.to(() => SuccesPage()),
+                // onTap: () => Get.to(() => MainPage()),
+
+                onTap: () {
+                  loadingBuilder();
+                  getFacecognition();
+                },
+
                 borderRadius: BorderRadius.circular(30),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,

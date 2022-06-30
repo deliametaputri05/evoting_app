@@ -5,8 +5,11 @@ class DioService {
   Dio get dio => _dio();
   Dio _dio() {
     final baseOptions = BaseOptions(
-      connectTimeout: 3000,
-      receiveTimeout: 5000,
+      connectTimeout: 30000000,
+      receiveTimeout: 5000000,
+      validateStatus: (status) {
+        return status! < 500;
+      },
     );
     var dio = Dio(baseOptions);
     dio.interceptors.add(PrettyDioLogger(

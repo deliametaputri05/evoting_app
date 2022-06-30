@@ -1,10 +1,14 @@
 part of 'pages.dart';
 
-class SuccesPage extends StatelessWidget {
-  const SuccesPage({Key? key}) : super(key: key);
+class SuccessPage extends StatelessWidget {
+  const SuccessPage({Key? key})
+      : super(
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
+    GetStorage session = GetStorage();
     return Scaffold(
       backgroundColor: mainColor,
       body: Center(
@@ -12,6 +16,13 @@ class SuccesPage extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.8,
           height: MediaQuery.of(context).size.height * 0.85,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blue,
+                offset: Offset(0, 10),
+                blurRadius: 10,
+              ),
+            ],
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
@@ -58,8 +69,8 @@ class SuccesPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image(
-                    image: AssetImage(
-                      'assets/face_1.jpg',
+                    image: NetworkImage(
+                      session.read('foto'),
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -69,7 +80,7 @@ class SuccesPage extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                'Delia Meta Putri',
+                session.read('nama'),
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
@@ -98,7 +109,7 @@ class SuccesPage extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '1903037',
+                          session.read('nim').toString(),
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -123,7 +134,17 @@ class SuccesPage extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'D3 Teknik Informatika',
+                          session.read('id_jurusan') == 1
+                              ? 'D3 Teknik Informatika'
+                              : session.read('id_jurusan') == 2
+                                  ? 'D4 Rekayasa Perangkat Lunak'
+                                  : session.read('id_jurusan') == 3
+                                      ? 'D3 Teknik Mesin'
+                                      : session.read('id_jurusan') == 4
+                                          ? 'D4 Perancangan Manufaktur'
+                                          : session.read('id_jurusan') == 5
+                                              ? 'D3 Teknik Pendingin dan Tata Udara'
+                                              : 'D3 Keperawatan',
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,

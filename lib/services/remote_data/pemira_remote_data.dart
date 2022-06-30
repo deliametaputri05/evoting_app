@@ -8,7 +8,7 @@ import '../../constant/endpoint.dart';
 
 class PemiraRemoteData extends DioService {
   Future<Either<ResponseMessage, List<PemiraModel>>> getPemira(
-      String idJurusan) async {
+      int idJurusan) async {
     try {
       final response = await dio
           .get(EndPoint.getPemira, queryParameters: {"id_jurusan": idJurusan});

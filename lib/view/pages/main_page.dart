@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
           )),
           Align(
             alignment: Alignment.bottomCenter,
-            child: CustomBottomNavBar(
+            child: BottomNavbar(
               selectedIndex: selectedPage,
               onTap: (index) {
                 setState(() {

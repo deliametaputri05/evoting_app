@@ -1,12 +1,18 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:evoting_mobile/provider/kandidat_provider.dart';
 import 'package:evoting_mobile/provider/pemira_provider.dart';
+import 'package:evoting_mobile/shared/shared.dart';
 import 'package:evoting_mobile/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +20,15 @@ import 'package:supercharged/supercharged.dart';
 
 import '../../enum/loading_enum.dart';
 import '../../models/kandidat_model/kandidat_model.dart';
+import '../../models/mahasiswa_model/mahasiswa_model.dart';
+import '../../models/pemira_model/pemira_model.dart';
+import '../../provider/facerecognition_provider.dart';
 import '../../provider/ormawa_provider.dart';
+import '../../provider/voting_provider.dart';
 import '../../services/remote_data/facerecognition_remote_data.dart';
+import '../../shared/shared.dart';
+import '../../shared/shared.dart';
+import '../widgets/loading_builder.dart';
 import '../widgets/widgets.dart';
 
 part 'onboarding_page.dart';
@@ -27,3 +40,5 @@ part 'quick_count_page.dart';
 part 'form_login_page.dart';
 part 'success_page.dart';
 part 'kandidat_page.dart';
+part 'kandidat_details_page.dart';
+part 'profile_calonKetua_page.dart';

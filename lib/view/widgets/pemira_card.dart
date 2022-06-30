@@ -8,11 +8,12 @@ class PemiraCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(KandidatPage(
-        id: pemiraModel.id ?? 1,
-      )),
+      onTap: () => Get.to(() => KandidatPage(
+            id: pemiraModel.id ?? 1,
+            pemira: pemiraModel,
+          )),
       child: Container(
-        width: 350.0,
+        width: 340.0,
         height: 220.0,
         child: Card(
           shape: RoundedRectangleBorder(
@@ -37,7 +38,7 @@ class PemiraCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                "21-08-2022",
+                                pemiraModel.tanggal ?? '',
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.blue,
@@ -89,7 +90,7 @@ class PemiraCard extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: 210,
+                          width: 200,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

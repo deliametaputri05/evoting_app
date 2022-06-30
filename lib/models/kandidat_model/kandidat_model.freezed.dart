@@ -40,6 +40,12 @@ mixin _$KandidatModel {
   int? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   int? get updatedAt => throw _privateConstructorUsedError;
+  Ormawa? get ormawa => throw _privateConstructorUsedError;
+  Pemira? get pemira => throw _privateConstructorUsedError;
+  @JsonKey(name: 'calon_ketua')
+  CalonKetua? get calonKetua => throw _privateConstructorUsedError;
+  @JsonKey(name: 'calon_wakil')
+  CalonWakil? get calonWakil => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,7 +70,16 @@ abstract class $KandidatModelCopyWith<$Res> {
       String? misi,
       @JsonKey(name: 'deleted_at') dynamic deletedAt,
       @JsonKey(name: 'created_at') int? createdAt,
-      @JsonKey(name: 'updated_at') int? updatedAt});
+      @JsonKey(name: 'updated_at') int? updatedAt,
+      Ormawa? ormawa,
+      Pemira? pemira,
+      @JsonKey(name: 'calon_ketua') CalonKetua? calonKetua,
+      @JsonKey(name: 'calon_wakil') CalonWakil? calonWakil});
+
+  $OrmawaCopyWith<$Res>? get ormawa;
+  $PemiraCopyWith<$Res>? get pemira;
+  $CalonKetuaCopyWith<$Res>? get calonKetua;
+  $CalonWakilCopyWith<$Res>? get calonWakil;
 }
 
 /// @nodoc
@@ -90,6 +105,10 @@ class _$KandidatModelCopyWithImpl<$Res>
     Object? deletedAt = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? ormawa = freezed,
+    Object? pemira = freezed,
+    Object? calonKetua = freezed,
+    Object? calonWakil = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -140,7 +159,67 @@ class _$KandidatModelCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as int?,
+      ormawa: ormawa == freezed
+          ? _value.ormawa
+          : ormawa // ignore: cast_nullable_to_non_nullable
+              as Ormawa?,
+      pemira: pemira == freezed
+          ? _value.pemira
+          : pemira // ignore: cast_nullable_to_non_nullable
+              as Pemira?,
+      calonKetua: calonKetua == freezed
+          ? _value.calonKetua
+          : calonKetua // ignore: cast_nullable_to_non_nullable
+              as CalonKetua?,
+      calonWakil: calonWakil == freezed
+          ? _value.calonWakil
+          : calonWakil // ignore: cast_nullable_to_non_nullable
+              as CalonWakil?,
     ));
+  }
+
+  @override
+  $OrmawaCopyWith<$Res>? get ormawa {
+    if (_value.ormawa == null) {
+      return null;
+    }
+
+    return $OrmawaCopyWith<$Res>(_value.ormawa!, (value) {
+      return _then(_value.copyWith(ormawa: value));
+    });
+  }
+
+  @override
+  $PemiraCopyWith<$Res>? get pemira {
+    if (_value.pemira == null) {
+      return null;
+    }
+
+    return $PemiraCopyWith<$Res>(_value.pemira!, (value) {
+      return _then(_value.copyWith(pemira: value));
+    });
+  }
+
+  @override
+  $CalonKetuaCopyWith<$Res>? get calonKetua {
+    if (_value.calonKetua == null) {
+      return null;
+    }
+
+    return $CalonKetuaCopyWith<$Res>(_value.calonKetua!, (value) {
+      return _then(_value.copyWith(calonKetua: value));
+    });
+  }
+
+  @override
+  $CalonWakilCopyWith<$Res>? get calonWakil {
+    if (_value.calonWakil == null) {
+      return null;
+    }
+
+    return $CalonWakilCopyWith<$Res>(_value.calonWakil!, (value) {
+      return _then(_value.copyWith(calonWakil: value));
+    });
   }
 }
 
@@ -163,7 +242,20 @@ abstract class _$$_KandidatModelCopyWith<$Res>
       String? misi,
       @JsonKey(name: 'deleted_at') dynamic deletedAt,
       @JsonKey(name: 'created_at') int? createdAt,
-      @JsonKey(name: 'updated_at') int? updatedAt});
+      @JsonKey(name: 'updated_at') int? updatedAt,
+      Ormawa? ormawa,
+      Pemira? pemira,
+      @JsonKey(name: 'calon_ketua') CalonKetua? calonKetua,
+      @JsonKey(name: 'calon_wakil') CalonWakil? calonWakil});
+
+  @override
+  $OrmawaCopyWith<$Res>? get ormawa;
+  @override
+  $PemiraCopyWith<$Res>? get pemira;
+  @override
+  $CalonKetuaCopyWith<$Res>? get calonKetua;
+  @override
+  $CalonWakilCopyWith<$Res>? get calonWakil;
 }
 
 /// @nodoc
@@ -191,6 +283,10 @@ class __$$_KandidatModelCopyWithImpl<$Res>
     Object? deletedAt = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? ormawa = freezed,
+    Object? pemira = freezed,
+    Object? calonKetua = freezed,
+    Object? calonWakil = freezed,
   }) {
     return _then(_$_KandidatModel(
       id: id == freezed
@@ -241,6 +337,22 @@ class __$$_KandidatModelCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as int?,
+      ormawa: ormawa == freezed
+          ? _value.ormawa
+          : ormawa // ignore: cast_nullable_to_non_nullable
+              as Ormawa?,
+      pemira: pemira == freezed
+          ? _value.pemira
+          : pemira // ignore: cast_nullable_to_non_nullable
+              as Pemira?,
+      calonKetua: calonKetua == freezed
+          ? _value.calonKetua
+          : calonKetua // ignore: cast_nullable_to_non_nullable
+              as CalonKetua?,
+      calonWakil: calonWakil == freezed
+          ? _value.calonWakil
+          : calonWakil // ignore: cast_nullable_to_non_nullable
+              as CalonWakil?,
     ));
   }
 }
@@ -260,7 +372,11 @@ class _$_KandidatModel implements _KandidatModel {
       this.misi,
       @JsonKey(name: 'deleted_at') this.deletedAt,
       @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      @JsonKey(name: 'updated_at') this.updatedAt,
+      this.ormawa,
+      this.pemira,
+      @JsonKey(name: 'calon_ketua') this.calonKetua,
+      @JsonKey(name: 'calon_wakil') this.calonWakil});
 
   factory _$_KandidatModel.fromJson(Map<String, dynamic> json) =>
       _$$_KandidatModelFromJson(json);
@@ -297,10 +413,20 @@ class _$_KandidatModel implements _KandidatModel {
   @override
   @JsonKey(name: 'updated_at')
   final int? updatedAt;
+  @override
+  final Ormawa? ormawa;
+  @override
+  final Pemira? pemira;
+  @override
+  @JsonKey(name: 'calon_ketua')
+  final CalonKetua? calonKetua;
+  @override
+  @JsonKey(name: 'calon_wakil')
+  final CalonWakil? calonWakil;
 
   @override
   String toString() {
-    return 'KandidatModel(id: $id, idClnKetua: $idClnKetua, idClnWakil: $idClnWakil, idPemira: $idPemira, idOrmawa: $idOrmawa, noUrut: $noUrut, foto: $foto, visi: $visi, misi: $misi, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'KandidatModel(id: $id, idClnKetua: $idClnKetua, idClnWakil: $idClnWakil, idPemira: $idPemira, idOrmawa: $idOrmawa, noUrut: $noUrut, foto: $foto, visi: $visi, misi: $misi, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, ormawa: $ormawa, pemira: $pemira, calonKetua: $calonKetua, calonWakil: $calonWakil)';
   }
 
   @override
@@ -321,7 +447,13 @@ class _$_KandidatModel implements _KandidatModel {
             const DeepCollectionEquality().equals(other.misi, misi) &&
             const DeepCollectionEquality().equals(other.deletedAt, deletedAt) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
+            const DeepCollectionEquality().equals(other.ormawa, ormawa) &&
+            const DeepCollectionEquality().equals(other.pemira, pemira) &&
+            const DeepCollectionEquality()
+                .equals(other.calonKetua, calonKetua) &&
+            const DeepCollectionEquality()
+                .equals(other.calonWakil, calonWakil));
   }
 
   @JsonKey(ignore: true)
@@ -339,7 +471,11 @@ class _$_KandidatModel implements _KandidatModel {
       const DeepCollectionEquality().hash(misi),
       const DeepCollectionEquality().hash(deletedAt),
       const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(updatedAt),
+      const DeepCollectionEquality().hash(ormawa),
+      const DeepCollectionEquality().hash(pemira),
+      const DeepCollectionEquality().hash(calonKetua),
+      const DeepCollectionEquality().hash(calonWakil));
 
   @JsonKey(ignore: true)
   @override
@@ -354,18 +490,23 @@ class _$_KandidatModel implements _KandidatModel {
 
 abstract class _KandidatModel implements KandidatModel {
   factory _KandidatModel(
-      {final int? id,
-      @JsonKey(name: 'id_clnKetua') final int? idClnKetua,
-      @JsonKey(name: 'id_clnWakil') final int? idClnWakil,
-      @JsonKey(name: 'id_pemira') final int? idPemira,
-      @JsonKey(name: 'id_ormawa') final int? idOrmawa,
-      @JsonKey(name: 'no_urut') final int? noUrut,
-      final String? foto,
-      final String? visi,
-      final String? misi,
-      @JsonKey(name: 'deleted_at') final dynamic deletedAt,
-      @JsonKey(name: 'created_at') final int? createdAt,
-      @JsonKey(name: 'updated_at') final int? updatedAt}) = _$_KandidatModel;
+          {final int? id,
+          @JsonKey(name: 'id_clnKetua') final int? idClnKetua,
+          @JsonKey(name: 'id_clnWakil') final int? idClnWakil,
+          @JsonKey(name: 'id_pemira') final int? idPemira,
+          @JsonKey(name: 'id_ormawa') final int? idOrmawa,
+          @JsonKey(name: 'no_urut') final int? noUrut,
+          final String? foto,
+          final String? visi,
+          final String? misi,
+          @JsonKey(name: 'deleted_at') final dynamic deletedAt,
+          @JsonKey(name: 'created_at') final int? createdAt,
+          @JsonKey(name: 'updated_at') final int? updatedAt,
+          final Ormawa? ormawa,
+          final Pemira? pemira,
+          @JsonKey(name: 'calon_ketua') final CalonKetua? calonKetua,
+          @JsonKey(name: 'calon_wakil') final CalonWakil? calonWakil}) =
+      _$_KandidatModel;
 
   factory _KandidatModel.fromJson(Map<String, dynamic> json) =
       _$_KandidatModel.fromJson;
@@ -402,6 +543,16 @@ abstract class _KandidatModel implements KandidatModel {
   @override
   @JsonKey(name: 'updated_at')
   int? get updatedAt => throw _privateConstructorUsedError;
+  @override
+  Ormawa? get ormawa => throw _privateConstructorUsedError;
+  @override
+  Pemira? get pemira => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'calon_ketua')
+  CalonKetua? get calonKetua => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'calon_wakil')
+  CalonWakil? get calonWakil => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_KandidatModelCopyWith<_$_KandidatModel> get copyWith =>

@@ -8,9 +8,11 @@ class PemiraPage extends StatefulWidget {
 }
 
 class _PemiraPageState extends State<PemiraPage> {
+  GetStorage session = GetStorage();
   @override
   void initState() {
-    Provider.of<PemiraProvider>(context, listen: false).getPemira('1');
+    Provider.of<PemiraProvider>(context, listen: false)
+        .getPemira(session.read('id_jurusan'));
     Provider.of<OrmawaProvider>(context, listen: false).getOrmawa();
     super.initState();
   }
@@ -18,7 +20,7 @@ class _PemiraPageState extends State<PemiraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       body: Consumer<PemiraProvider>(builder: (context, data, _) {
         return ListView(
           children: [
@@ -53,34 +55,49 @@ class _PemiraPageState extends State<PemiraPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Organisasi Mahasiswa',
-                        style: greyFontStyle.copyWith(fontSize: 15),
-                      ),
-                    ),
-                  ),
                   Consumer<OrmawaProvider>(builder: (context, data, _) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      height: 100,
-                      width: double.infinity,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: data.ormawa.map((e) {
-                            return OrmawaCard(
-                              ormawaModel: e,
-                            );
-                          }).toList(),
+                    return Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          margin:
+                              EdgeInsets.symmetric(horizontal: defaultMargin),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Organisasi Mahasiswa',
+                              style: greyFontStyle.copyWith(fontSize: 15),
+                            ),
+                          ),
                         ),
-                      ),
+                        if (data.loadingOrmawa == LoadingStatus.loading)
+                          Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        if (data.loadingOrmawa == LoadingStatus.error)
+                          Center(
+                            child: Text('Terjadi kesalahan'),
+                          ),
+                        if (data.loadingOrmawa == LoadingStatus.loaded)
+                          Container(
+                            margin:
+                                EdgeInsets.symmetric(horizontal: defaultMargin),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            height: 100,
+                            width: double.infinity,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: data.ormawa.map((e) {
+                                  return OrmawaCard(
+                                    ormawaModel: e,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                      ],
                     );
                   }),
                   SizedBox(

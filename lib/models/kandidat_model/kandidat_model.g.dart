@@ -20,6 +20,18 @@ _$_KandidatModel _$$_KandidatModelFromJson(Map<String, dynamic> json) =>
       deletedAt: json['deleted_at'],
       createdAt: json['created_at'] as int?,
       updatedAt: json['updated_at'] as int?,
+      ormawa: json['ormawa'] == null
+          ? null
+          : Ormawa.fromJson(json['ormawa'] as Map<String, dynamic>),
+      pemira: json['pemira'] == null
+          ? null
+          : Pemira.fromJson(json['pemira'] as Map<String, dynamic>),
+      calonKetua: json['calon_ketua'] == null
+          ? null
+          : CalonKetua.fromJson(json['calon_ketua'] as Map<String, dynamic>),
+      calonWakil: json['calon_wakil'] == null
+          ? null
+          : CalonWakil.fromJson(json['calon_wakil'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_KandidatModelToJson(_$_KandidatModel instance) =>
@@ -36,4 +48,8 @@ Map<String, dynamic> _$$_KandidatModelToJson(_$_KandidatModel instance) =>
       'deleted_at': instance.deletedAt,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'ormawa': instance.ormawa,
+      'pemira': instance.pemira,
+      'calon_ketua': instance.calonKetua,
+      'calon_wakil': instance.calonWakil,
     };

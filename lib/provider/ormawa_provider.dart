@@ -9,7 +9,6 @@ class OrmawaProvider extends ChangeNotifier {
 
   Future getOrmawa() async {
     loadingOrmawa = LoadingStatus.loading;
-    notifyListeners();
 
     await OrmawaRemoteData().getOrmawa().then((value) {
       value.fold((l) {
