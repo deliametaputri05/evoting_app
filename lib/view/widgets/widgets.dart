@@ -24,3 +24,4 @@ part 'header_widget.dart';
 part 'ormawa_card.dart';
 part 'pemira_card.dart';
 part 'vote_card.dart';
+part 'logo_card.dart';

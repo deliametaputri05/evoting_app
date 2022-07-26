@@ -17,6 +17,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
+import 'dart:developer' as log;
 
 import '../../enum/loading_enum.dart';
 import '../../models/kandidat_model/kandidat_model.dart';

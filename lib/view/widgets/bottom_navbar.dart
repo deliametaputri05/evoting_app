@@ -57,7 +57,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                 ),
                 GButton(
                   icon: Icons.bar_chart_outlined,
-                  text: 'Vote',
+                  text: 'Quick Count',
                 ),
                 GButton(
                   icon: Icons.person_outline,

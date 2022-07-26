@@ -9,7 +9,7 @@ class PemiraCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Get.to(() => KandidatPage(
-            id: pemiraModel.id ?? 1,
+            id: pemiraModel.ormawa!.id ?? 1,
             pemira: pemiraModel,
           )),
       child: Container(

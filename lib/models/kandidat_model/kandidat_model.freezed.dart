@@ -31,6 +31,8 @@ mixin _$KandidatModel {
   int? get idOrmawa => throw _privateConstructorUsedError;
   @JsonKey(name: 'no_urut')
   int? get noUrut => throw _privateConstructorUsedError;
+  @JsonKey(name: 'jumlah_suara')
+  int? get jumlahSuara => throw _privateConstructorUsedError;
   String? get foto => throw _privateConstructorUsedError;
   String? get visi => throw _privateConstructorUsedError;
   String? get misi => throw _privateConstructorUsedError;
@@ -65,6 +67,7 @@ abstract class $KandidatModelCopyWith<$Res> {
       @JsonKey(name: 'id_pemira') int? idPemira,
       @JsonKey(name: 'id_ormawa') int? idOrmawa,
       @JsonKey(name: 'no_urut') int? noUrut,
+      @JsonKey(name: 'jumlah_suara') int? jumlahSuara,
       String? foto,
       String? visi,
       String? misi,
@@ -99,6 +102,7 @@ class _$KandidatModelCopyWithImpl<$Res>
     Object? idPemira = freezed,
     Object? idOrmawa = freezed,
     Object? noUrut = freezed,
+    Object? jumlahSuara = freezed,
     Object? foto = freezed,
     Object? visi = freezed,
     Object? misi = freezed,
@@ -134,6 +138,10 @@ class _$KandidatModelCopyWithImpl<$Res>
       noUrut: noUrut == freezed
           ? _value.noUrut
           : noUrut // ignore: cast_nullable_to_non_nullable
+              as int?,
+      jumlahSuara: jumlahSuara == freezed
+          ? _value.jumlahSuara
+          : jumlahSuara // ignore: cast_nullable_to_non_nullable
               as int?,
       foto: foto == freezed
           ? _value.foto
@@ -237,6 +245,7 @@ abstract class _$$_KandidatModelCopyWith<$Res>
       @JsonKey(name: 'id_pemira') int? idPemira,
       @JsonKey(name: 'id_ormawa') int? idOrmawa,
       @JsonKey(name: 'no_urut') int? noUrut,
+      @JsonKey(name: 'jumlah_suara') int? jumlahSuara,
       String? foto,
       String? visi,
       String? misi,
@@ -277,6 +286,7 @@ class __$$_KandidatModelCopyWithImpl<$Res>
     Object? idPemira = freezed,
     Object? idOrmawa = freezed,
     Object? noUrut = freezed,
+    Object? jumlahSuara = freezed,
     Object? foto = freezed,
     Object? visi = freezed,
     Object? misi = freezed,
@@ -312,6 +322,10 @@ class __$$_KandidatModelCopyWithImpl<$Res>
       noUrut: noUrut == freezed
           ? _value.noUrut
           : noUrut // ignore: cast_nullable_to_non_nullable
+              as int?,
+      jumlahSuara: jumlahSuara == freezed
+          ? _value.jumlahSuara
+          : jumlahSuara // ignore: cast_nullable_to_non_nullable
               as int?,
       foto: foto == freezed
           ? _value.foto
@@ -367,6 +381,7 @@ class _$_KandidatModel implements _KandidatModel {
       @JsonKey(name: 'id_pemira') this.idPemira,
       @JsonKey(name: 'id_ormawa') this.idOrmawa,
       @JsonKey(name: 'no_urut') this.noUrut,
+      @JsonKey(name: 'jumlah_suara') this.jumlahSuara,
       this.foto,
       this.visi,
       this.misi,
@@ -399,6 +414,9 @@ class _$_KandidatModel implements _KandidatModel {
   @JsonKey(name: 'no_urut')
   final int? noUrut;
   @override
+  @JsonKey(name: 'jumlah_suara')
+  final int? jumlahSuara;
+  @override
   final String? foto;
   @override
   final String? visi;
@@ -426,7 +444,7 @@ class _$_KandidatModel implements _KandidatModel {
 
   @override
   String toString() {
-    return 'KandidatModel(id: $id, idClnKetua: $idClnKetua, idClnWakil: $idClnWakil, idPemira: $idPemira, idOrmawa: $idOrmawa, noUrut: $noUrut, foto: $foto, visi: $visi, misi: $misi, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, ormawa: $ormawa, pemira: $pemira, calonKetua: $calonKetua, calonWakil: $calonWakil)';
+    return 'KandidatModel(id: $id, idClnKetua: $idClnKetua, idClnWakil: $idClnWakil, idPemira: $idPemira, idOrmawa: $idOrmawa, noUrut: $noUrut, jumlahSuara: $jumlahSuara, foto: $foto, visi: $visi, misi: $misi, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, ormawa: $ormawa, pemira: $pemira, calonKetua: $calonKetua, calonWakil: $calonWakil)';
   }
 
   @override
@@ -442,6 +460,8 @@ class _$_KandidatModel implements _KandidatModel {
             const DeepCollectionEquality().equals(other.idPemira, idPemira) &&
             const DeepCollectionEquality().equals(other.idOrmawa, idOrmawa) &&
             const DeepCollectionEquality().equals(other.noUrut, noUrut) &&
+            const DeepCollectionEquality()
+                .equals(other.jumlahSuara, jumlahSuara) &&
             const DeepCollectionEquality().equals(other.foto, foto) &&
             const DeepCollectionEquality().equals(other.visi, visi) &&
             const DeepCollectionEquality().equals(other.misi, misi) &&
@@ -466,6 +486,7 @@ class _$_KandidatModel implements _KandidatModel {
       const DeepCollectionEquality().hash(idPemira),
       const DeepCollectionEquality().hash(idOrmawa),
       const DeepCollectionEquality().hash(noUrut),
+      const DeepCollectionEquality().hash(jumlahSuara),
       const DeepCollectionEquality().hash(foto),
       const DeepCollectionEquality().hash(visi),
       const DeepCollectionEquality().hash(misi),
@@ -496,6 +517,7 @@ abstract class _KandidatModel implements KandidatModel {
           @JsonKey(name: 'id_pemira') final int? idPemira,
           @JsonKey(name: 'id_ormawa') final int? idOrmawa,
           @JsonKey(name: 'no_urut') final int? noUrut,
+          @JsonKey(name: 'jumlah_suara') final int? jumlahSuara,
           final String? foto,
           final String? visi,
           final String? misi,
@@ -528,6 +550,9 @@ abstract class _KandidatModel implements KandidatModel {
   @override
   @JsonKey(name: 'no_urut')
   int? get noUrut => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'jumlah_suara')
+  int? get jumlahSuara => throw _privateConstructorUsedError;
   @override
   String? get foto => throw _privateConstructorUsedError;
   @override

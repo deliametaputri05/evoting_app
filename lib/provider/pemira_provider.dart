@@ -8,7 +8,7 @@ class PemiraProvider extends ChangeNotifier {
   List<PemiraModel> pemira = [];
   LoadingStatus loadingPemira = LoadingStatus.initiazaiton;
 
-  Future getPemira(idJurusan) async {
+  Future<PemiraModel?> getPemira(idJurusan) async {
     loadingPemira = LoadingStatus.loading;
 
     await PemiraRemoteData().getPemira(idJurusan).then((value) {
@@ -20,6 +20,7 @@ class PemiraProvider extends ChangeNotifier {
         pemira = r;
 
         notifyListeners();
+        return pemira;
       });
     });
   }

@@ -6,20 +6,28 @@ import 'package:flutter/foundation.dart';
 class KandidatProvider extends ChangeNotifier {
   List<KandidatModel> kandidat = [];
   LoadingStatus loadingKandidat = LoadingStatus.initiazaiton;
+  int? idPemira;
 
-  Future getKandidat(int idPemira) async {
+  void setIdPemira(int value) {
+    idPemira = value;
+    notifyListeners();
+  }
+
+  Future<KandidatModel?> getKandidat(int idPemira) async {
     loadingKandidat = LoadingStatus.loading;
     notifyListeners();
 
     await KandidatRemoteData().getKandidat(idPemira).then((value) {
       value.fold((l) {
         loadingKandidat = LoadingStatus.error;
-        notifyListeners();
+        notifyListeners();  
+        return kandidat;
       }, (r) {
         loadingKandidat = LoadingStatus.loaded;
         kandidat = r;
 
         notifyListeners();
+        return r;
       });
     });
   }
