@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class KandidatDetailsPage extends StatefulWidget {
-  final KandidatModel kandidat;
+  final DataKandidat kandidat;
 
   KandidatDetailsPage({required this.kandidat});
   @override
@@ -96,15 +96,14 @@ class _KandidatDetailsPageState extends State<KandidatDetailsPage> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 15,
               horizontal: 30,
             ),
             child: Text(
               widget.kandidat.visi ?? '',
               style: TextStyle(
-                color: Colors.black38,
-                height: 1.4,
-                fontSize: 14,
+                color: Colors.black,
+                // height: 1.4,
+                fontSize: 13,
               ),
             ),
           ),
@@ -130,17 +129,18 @@ class _KandidatDetailsPageState extends State<KandidatDetailsPage> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 15,
               horizontal: 30,
             ),
             child: Text(
               widget.kandidat.misi ?? '',
               style: TextStyle(
-                color: Colors.black38,
-                height: 1.4,
-                fontSize: 14,
+                color: Colors.black,
+                fontSize: 13,
               ),
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
         ],
       ),
@@ -149,9 +149,20 @@ class _KandidatDetailsPageState extends State<KandidatDetailsPage> {
 
   Widget _buildUserInfo() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 2),
       child: Column(
         children: [
+          // Text(
+          //   'No Urut ' + widget.kandidat.noUrut.toString(),
+          //   style: TextStyle(
+          //     color: Colors.black,
+          //     fontSize: 15,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 10,
+          // ),
           InkWell(
             hoverColor: Colors.blue,
             focusColor: Colors.red,
@@ -204,48 +215,56 @@ class _KandidatDetailsPageState extends State<KandidatDetailsPage> {
           SizedBox(
             height: 15,
           ),
-          if (widget.kandidat.calonWakil == null) SizedBox(height: 10),
+          if (widget.kandidat.calonWakil == null) Text(''),
           if (widget.kandidat.calonWakil != null)
-            Row(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.network(
-                    widget.kandidat.calonWakil?.foto ?? '',
-                    width: 70,
-                    height: 70,
-                    fit: BoxFit.cover,
+            InkWell(
+              hoverColor: Colors.blue,
+              focusColor: Colors.red,
+              splashColor: Colors.indigo,
+              onTap: () {
+                Get.to(() => ProfileCalonWakilPage(kandidat: widget.kandidat));
+              },
+              child: Row(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.network(
+                      widget.kandidat.calonWakil?.foto ?? '',
+                      width: 70,
+                      height: 70,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        widget.kandidat.calonWakil!.nama ?? '',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          widget.kandidat.calonWakil!.nama ?? '',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Calon Wakil",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
+                        Text(
+                          "Calon Wakil",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           SizedBox(
             height: 10,
@@ -270,7 +289,7 @@ class _KandidatDetailsPageState extends State<KandidatDetailsPage> {
 
 class DetailSliverDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
-  final KandidatModel kandidat;
+  final DataKandidat kandidat;
   final double rounded_container_height;
 
   DetailSliverDelegate(
@@ -311,29 +330,32 @@ class DetailSliverDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
-          Positioned(
-            top: expandedHeight - 120 - shrinkOffset,
-            left: 30,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  kandidat.ormawa!.nama ?? '',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-                Text(
-                  'No Urut ' + kandidat.noUrut.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          )
+          // Positioned(
+          //   top: expandedHeight - 120 - shrinkOffset,
+          //   left: 30,
+          //   child: Container(
+          //     color: Colors.blue,
+          //     child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: <Widget>[
+          //         Text(
+          //           kandidat.ormawa!.nama ?? '',
+          //           style: TextStyle(
+          //             color: Colors.white,
+          //             fontSize: 15,
+          //           ),
+          //         ),
+          //         Text(
+          //           'No Urut ' + kandidat.noUrut.toString(),
+          //           style: TextStyle(
+          //             color: Colors.white,
+          //             fontSize: 15,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

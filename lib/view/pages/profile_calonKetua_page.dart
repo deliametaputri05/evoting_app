@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class ProfileCalonKetuaPage extends StatefulWidget {
-  final KandidatModel kandidat;
+  final DataKandidat kandidat;
 
   ProfileCalonKetuaPage({required this.kandidat});
   @override
@@ -9,9 +9,6 @@ class ProfileCalonKetuaPage extends StatefulWidget {
 }
 
 class _ProfileCalonKetuaPageState extends State<ProfileCalonKetuaPage> {
-  final double expanded_height = 400;
-  final double rounded_container_height = 50;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,10 +142,32 @@ class _ProfileCalonKetuaPageState extends State<ProfileCalonKetuaPage> {
                           )),
                     ]),
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     Text(
-                      'Motto',
+                      'Alamat',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Container(
+                        width: 250,
+                        child: Text(
+                          '${widget.kandidat.calonKetua?.alamat ?? ''}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[400],
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Moto',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

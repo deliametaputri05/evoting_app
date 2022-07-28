@@ -8,8 +8,9 @@ class OnBoardingPage extends StatelessWidget {
       child: IntroductionScreen(
         pages: [
           PageViewModel(
-            title: 'Ayo Vote !',
-            body: 'Gunakan hak suaramu sebaik mungkin untuk memilih',
+            title: 'E-Voting',
+            body:
+                'E-voting adalah suatu sistem pemilihan dimana data dicatat, disimpan dan diproses dalam bentuk informasi digital.',
             image: Image.asset(
               'assets/vector_1.png',
               width: 200,
@@ -17,9 +18,9 @@ class OnBoardingPage extends StatelessWidget {
             decoration: getPageDecoration(),
           ),
           PageViewModel(
-            title: 'E-Voting',
+            title: 'Pemilihan Raya',
             body:
-                'E-voting adalah suatu sistem pemilihan dimana data dicatat, disimpan dan diproses dalam bentuk informasi digital.',
+                'Pemilihan Raya Ketua Organisasi  \n Mahasiswa : MPM, BEM dan HMJ \n Politeknik Negeri Indramayu.',
             image: Image.asset(
               'assets/vector_2.png',
               width: 200,
@@ -27,12 +28,12 @@ class OnBoardingPage extends StatelessWidget {
             decoration: getPageDecoration(),
           ),
           PageViewModel(
-            title: 'Pemilihan Raya',
+            title: 'Face Recognition',
             body:
-                'Pemilihan Raya Ketua Organisasi Mahasiswa Politeknik Negeri Indramayu yaitu MPM, \n BEM dan HMJ.',
+                'Autentikasi Login Mahasiswa dengan \n Sistem Face Recognition',
             image: Image.asset(
-              'assets/vector_3.png',
-              width: 200,
+              'assets/vector_4.png',
+              width: 180,
             ),
             decoration: getPageDecoration(),
           ),

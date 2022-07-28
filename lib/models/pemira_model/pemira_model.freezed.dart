@@ -38,6 +38,7 @@ mixin _$PemiraModel {
   @JsonKey(name: 'updated_at')
   int? get updatedAt => throw _privateConstructorUsedError;
   Ormawa? get ormawa => throw _privateConstructorUsedError;
+  Voting? get voting => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,9 +63,11 @@ abstract class $PemiraModelCopyWith<$Res> {
       @JsonKey(name: 'deleted_at') dynamic deletedAt,
       @JsonKey(name: 'created_at') int? createdAt,
       @JsonKey(name: 'updated_at') int? updatedAt,
-      Ormawa? ormawa});
+      Ormawa? ormawa,
+      Voting? voting});
 
   $OrmawaCopyWith<$Res>? get ormawa;
+  $VotingCopyWith<$Res>? get voting;
 }
 
 /// @nodoc
@@ -89,6 +92,7 @@ class _$PemiraModelCopyWithImpl<$Res> implements $PemiraModelCopyWith<$Res> {
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? ormawa = freezed,
+    Object? voting = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -139,6 +143,10 @@ class _$PemiraModelCopyWithImpl<$Res> implements $PemiraModelCopyWith<$Res> {
           ? _value.ormawa
           : ormawa // ignore: cast_nullable_to_non_nullable
               as Ormawa?,
+      voting: voting == freezed
+          ? _value.voting
+          : voting // ignore: cast_nullable_to_non_nullable
+              as Voting?,
     ));
   }
 
@@ -150,6 +158,17 @@ class _$PemiraModelCopyWithImpl<$Res> implements $PemiraModelCopyWith<$Res> {
 
     return $OrmawaCopyWith<$Res>(_value.ormawa!, (value) {
       return _then(_value.copyWith(ormawa: value));
+    });
+  }
+
+  @override
+  $VotingCopyWith<$Res>? get voting {
+    if (_value.voting == null) {
+      return null;
+    }
+
+    return $VotingCopyWith<$Res>(_value.voting!, (value) {
+      return _then(_value.copyWith(voting: value));
     });
   }
 }
@@ -173,10 +192,13 @@ abstract class _$$_PemiraModelCopyWith<$Res>
       @JsonKey(name: 'deleted_at') dynamic deletedAt,
       @JsonKey(name: 'created_at') int? createdAt,
       @JsonKey(name: 'updated_at') int? updatedAt,
-      Ormawa? ormawa});
+      Ormawa? ormawa,
+      Voting? voting});
 
   @override
   $OrmawaCopyWith<$Res>? get ormawa;
+  @override
+  $VotingCopyWith<$Res>? get voting;
 }
 
 /// @nodoc
@@ -203,6 +225,7 @@ class __$$_PemiraModelCopyWithImpl<$Res> extends _$PemiraModelCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? ormawa = freezed,
+    Object? voting = freezed,
   }) {
     return _then(_$_PemiraModel(
       id: id == freezed
@@ -253,6 +276,10 @@ class __$$_PemiraModelCopyWithImpl<$Res> extends _$PemiraModelCopyWithImpl<$Res>
           ? _value.ormawa
           : ormawa // ignore: cast_nullable_to_non_nullable
               as Ormawa?,
+      voting: voting == freezed
+          ? _value.voting
+          : voting // ignore: cast_nullable_to_non_nullable
+              as Voting?,
     ));
   }
 }
@@ -272,7 +299,8 @@ class _$_PemiraModel implements _PemiraModel {
       @JsonKey(name: 'deleted_at') this.deletedAt,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt,
-      this.ormawa});
+      this.ormawa,
+      this.voting});
 
   factory _$_PemiraModel.fromJson(Map<String, dynamic> json) =>
       _$$_PemiraModelFromJson(json);
@@ -307,10 +335,12 @@ class _$_PemiraModel implements _PemiraModel {
   final int? updatedAt;
   @override
   final Ormawa? ormawa;
+  @override
+  final Voting? voting;
 
   @override
   String toString() {
-    return 'PemiraModel(id: $id, idOrmawa: $idOrmawa, nama: $nama, foto: $foto, deskripsi: $deskripsi, tanggal: $tanggal, waktuMulai: $waktuMulai, waktuSelesai: $waktuSelesai, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, ormawa: $ormawa)';
+    return 'PemiraModel(id: $id, idOrmawa: $idOrmawa, nama: $nama, foto: $foto, deskripsi: $deskripsi, tanggal: $tanggal, waktuMulai: $waktuMulai, waktuSelesai: $waktuSelesai, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt, ormawa: $ormawa, voting: $voting)';
   }
 
   @override
@@ -331,7 +361,8 @@ class _$_PemiraModel implements _PemiraModel {
             const DeepCollectionEquality().equals(other.deletedAt, deletedAt) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.ormawa, ormawa));
+            const DeepCollectionEquality().equals(other.ormawa, ormawa) &&
+            const DeepCollectionEquality().equals(other.voting, voting));
   }
 
   @JsonKey(ignore: true)
@@ -349,7 +380,8 @@ class _$_PemiraModel implements _PemiraModel {
       const DeepCollectionEquality().hash(deletedAt),
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(ormawa));
+      const DeepCollectionEquality().hash(ormawa),
+      const DeepCollectionEquality().hash(voting));
 
   @JsonKey(ignore: true)
   @override
@@ -375,7 +407,8 @@ abstract class _PemiraModel implements PemiraModel {
       @JsonKey(name: 'deleted_at') final dynamic deletedAt,
       @JsonKey(name: 'created_at') final int? createdAt,
       @JsonKey(name: 'updated_at') final int? updatedAt,
-      final Ormawa? ormawa}) = _$_PemiraModel;
+      final Ormawa? ormawa,
+      final Voting? voting}) = _$_PemiraModel;
 
   factory _PemiraModel.fromJson(Map<String, dynamic> json) =
       _$_PemiraModel.fromJson;
@@ -410,6 +443,8 @@ abstract class _PemiraModel implements PemiraModel {
   int? get updatedAt => throw _privateConstructorUsedError;
   @override
   Ormawa? get ormawa => throw _privateConstructorUsedError;
+  @override
+  Voting? get voting => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PemiraModelCopyWith<_$_PemiraModel> get copyWith =>

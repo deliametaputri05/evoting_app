@@ -4,7 +4,7 @@ import 'package:evoting_mobile/services/remote_data/kandidat_remote_data.dart';
 import 'package:flutter/foundation.dart';
 
 class KandidatProvider extends ChangeNotifier {
-  List<KandidatModel> kandidat = [];
+  KandidatModel? kandidat;
   LoadingStatus loadingKandidat = LoadingStatus.initiazaiton;
   int? idPemira;
 
@@ -15,12 +15,12 @@ class KandidatProvider extends ChangeNotifier {
 
   Future<KandidatModel?> getKandidat(int idPemira) async {
     loadingKandidat = LoadingStatus.loading;
-    notifyListeners();
+    // notifyListeners();
 
     await KandidatRemoteData().getKandidat(idPemira).then((value) {
       value.fold((l) {
         loadingKandidat = LoadingStatus.error;
-        notifyListeners();  
+        notifyListeners();
         return kandidat;
       }, (r) {
         loadingKandidat = LoadingStatus.loaded;

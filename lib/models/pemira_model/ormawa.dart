@@ -8,6 +8,8 @@ class Ormawa with _$Ormawa {
 	factory Ormawa({
 		int? id,
 		String? nama,
+		String? label,
+		String? deskripsi,
 		String? logo,
 		@JsonKey(name: 'deleted_at') dynamic deletedAt,
 		@JsonKey(name: 'created_at') int? createdAt,

@@ -12,7 +12,7 @@ class CustomBottomNavBar extends StatefulWidget {
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   int _bottomNavCurrentIndex = 0;
-  List<Widget> _container = [PemiraPage(), QuickCountPage(), ProfilePage()];
+  List<Widget> _container = [PemiraPage(), CountPage(), ProfilePage()];
 
   @override
   initState() {

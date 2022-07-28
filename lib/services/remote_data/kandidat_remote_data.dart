@@ -3,20 +3,22 @@ import 'package:dio/dio.dart';
 import 'package:evoting_mobile/models/general_response/response_message.dart';
 import 'package:evoting_mobile/models/kandidat_model/kandidat_model.dart';
 import 'package:evoting_mobile/services/network/dio_service.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../constant/endpoint.dart';
 
 class KandidatRemoteData extends DioService {
-  Future<Either<ResponseMessage, List<KandidatModel>>> getKandidat(
-      int idPemira) async {
+  GetStorage session = GetStorage();
+  Future<Either<ResponseMessage, KandidatModel>> getKandidat(
+      int idOrmawa) async {
     try {
-      final response = await dio.get(EndPoint.getKandidat + "/$idPemira");
-      final data = response.data['data'];
-      final kandidat =
-          (data as List).map((e) => KandidatModel.fromJson(e)).toList();
+      final response = await dio.get(EndPoint.getKandidat, queryParameters: {
+        "id_ormawa": idOrmawa,
+        "id_mhs": session.read('id')
+      });
 
       if (response.statusCode == 200) {
-        return Right(kandidat);
+        return Right(KandidatModel.fromJson(response.data["data"]));
       } else {
         return Left(ResponseMessage(
             code: response.statusCode!,

@@ -45,13 +45,24 @@ class _QuickCountPageState extends State<QuickCountPage>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 60, left: 30),
-              child: Text(
-                "Perhitungan Suara",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
+              child: Row(
+                children: [
+                  Container(
+                    child: Image.asset(
+                      'assets/logo_evote.png',
+                      width: 55,
+                      height: 55,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Quick Count',
+                    style: blackFontStyle1.copyWith(
+                        fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
             ),
             if (data.loadingPemira == LoadingStatus.loading)
@@ -96,7 +107,7 @@ class _QuickCountPageState extends State<QuickCountPage>
                   return Center(
                     child: Text('Terjadi kesalahan'),
                   );
-                if (kandidat.kandidat.isNotEmpty)
+                if (kandidat.kandidat == null)
                   return Expanded(
                     child: PageView.builder(
                       controller: pageController,
@@ -134,14 +145,17 @@ class _QuickCountPageState extends State<QuickCountPage>
                                   onTap: () {
                                     Get.to(
                                       () => KandidatDetailsPage(
-                                        kandidat: kandidat.kandidat[index],
+                                        kandidat:
+                                            kandidat.kandidat!.data![index],
                                       ),
                                     );
                                   },
                                   hoverColor: Colors.grey,
                                   splashFactory: InkSplash.splashFactory,
                                   child: Image.network(
-                                    kandidat.kandidat.elementAt(index).foto ??
+                                    kandidat.kandidat!.data!
+                                            .elementAt(index)
+                                            .foto ??
                                         '',
                                     width: MediaQuery.of(context).size.width,
                                     fit: BoxFit.cover,
@@ -168,7 +182,7 @@ class _QuickCountPageState extends State<QuickCountPage>
                                           ),
                                         ),
                                         Text(
-                                          kandidat.kandidat
+                                          kandidat.kandidat!.data!
                                               .elementAt(index)
                                               .jumlahSuara
                                               .toString(),
@@ -185,7 +199,7 @@ class _QuickCountPageState extends State<QuickCountPage>
                           ),
                         );
                       },
-                      itemCount: kandidat.kandidat.length,
+                      itemCount: kandidat.kandidat!.data!.length,
                     ),
                   );
                 else

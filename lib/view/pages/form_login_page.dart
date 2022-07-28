@@ -12,7 +12,8 @@ class _FormLoginPageState extends State<FormLoginPage> {
   Future pickImageCamera() async {
     try {
       final image = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
+        source: ImageSource.camera,
+        imageQuality: 30,
         preferredCameraDevice: CameraDevice.front,
       );
 
@@ -27,6 +28,42 @@ class _FormLoginPageState extends State<FormLoginPage> {
   }
 
   Future getFacecognition() async {
+    if (_nimController.text.isEmpty) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text('Gagal'),
+                content: Text('NIM belum di isi !'),
+                actions: <Widget>[
+                  ElevatedButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Get.back();
+                    },
+                  )
+                ],
+              ));
+      return;
+    }
+    if (image == null) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text('Gagal'),
+                content: Text('Harap foto wajah terlebih dahulu!'),
+                actions: <Widget>[
+                  ElevatedButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Get.back();
+                    },
+                  )
+                ],
+              ));
+      return;
+    }
+    loadingBuilder();
+
     await FacerecognitionRemoteData()
         .getFacecognition(image!, _nimController.text)
         .then((value) {
@@ -56,11 +93,12 @@ class _FormLoginPageState extends State<FormLoginPage> {
                   ],
                 ));
       } else {
+        Get.back();
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: Text('Gagal'),
-            content: Text('coba lagi'),
+            content: Text(value['msg']),
             actions: <Widget>[
               ElevatedButton(
                 child: Text('OK'),
@@ -188,7 +226,6 @@ class _FormLoginPageState extends State<FormLoginPage> {
                 // onTap: () => Get.to(() => MainPage()),
 
                 onTap: () {
-                  loadingBuilder();
                   getFacecognition();
                 },
 

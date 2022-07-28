@@ -22,6 +22,8 @@ Ormawa _$OrmawaFromJson(Map<String, dynamic> json) {
 mixin _$Ormawa {
   int? get id => throw _privateConstructorUsedError;
   String? get nama => throw _privateConstructorUsedError;
+  String? get label => throw _privateConstructorUsedError;
+  String? get deskripsi => throw _privateConstructorUsedError;
   String? get logo => throw _privateConstructorUsedError;
   @JsonKey(name: 'deleted_at')
   dynamic get deletedAt => throw _privateConstructorUsedError;
@@ -42,6 +44,8 @@ abstract class $OrmawaCopyWith<$Res> {
   $Res call(
       {int? id,
       String? nama,
+      String? label,
+      String? deskripsi,
       String? logo,
       @JsonKey(name: 'deleted_at') dynamic deletedAt,
       @JsonKey(name: 'created_at') int? createdAt,
@@ -60,6 +64,8 @@ class _$OrmawaCopyWithImpl<$Res> implements $OrmawaCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? nama = freezed,
+    Object? label = freezed,
+    Object? deskripsi = freezed,
     Object? logo = freezed,
     Object? deletedAt = freezed,
     Object? createdAt = freezed,
@@ -73,6 +79,14 @@ class _$OrmawaCopyWithImpl<$Res> implements $OrmawaCopyWith<$Res> {
       nama: nama == freezed
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
+              as String?,
+      label: label == freezed
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deskripsi: deskripsi == freezed
+          ? _value.deskripsi
+          : deskripsi // ignore: cast_nullable_to_non_nullable
               as String?,
       logo: logo == freezed
           ? _value.logo
@@ -102,6 +116,8 @@ abstract class _$$_OrmawaCopyWith<$Res> implements $OrmawaCopyWith<$Res> {
   $Res call(
       {int? id,
       String? nama,
+      String? label,
+      String? deskripsi,
       String? logo,
       @JsonKey(name: 'deleted_at') dynamic deletedAt,
       @JsonKey(name: 'created_at') int? createdAt,
@@ -121,6 +137,8 @@ class __$$_OrmawaCopyWithImpl<$Res> extends _$OrmawaCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? nama = freezed,
+    Object? label = freezed,
+    Object? deskripsi = freezed,
     Object? logo = freezed,
     Object? deletedAt = freezed,
     Object? createdAt = freezed,
@@ -134,6 +152,14 @@ class __$$_OrmawaCopyWithImpl<$Res> extends _$OrmawaCopyWithImpl<$Res>
       nama: nama == freezed
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
+              as String?,
+      label: label == freezed
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deskripsi: deskripsi == freezed
+          ? _value.deskripsi
+          : deskripsi // ignore: cast_nullable_to_non_nullable
               as String?,
       logo: logo == freezed
           ? _value.logo
@@ -161,6 +187,8 @@ class _$_Ormawa implements _Ormawa {
   _$_Ormawa(
       {this.id,
       this.nama,
+      this.label,
+      this.deskripsi,
       this.logo,
       @JsonKey(name: 'deleted_at') this.deletedAt,
       @JsonKey(name: 'created_at') this.createdAt,
@@ -173,6 +201,10 @@ class _$_Ormawa implements _Ormawa {
   final int? id;
   @override
   final String? nama;
+  @override
+  final String? label;
+  @override
+  final String? deskripsi;
   @override
   final String? logo;
   @override
@@ -187,7 +219,7 @@ class _$_Ormawa implements _Ormawa {
 
   @override
   String toString() {
-    return 'Ormawa(id: $id, nama: $nama, logo: $logo, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Ormawa(id: $id, nama: $nama, label: $label, deskripsi: $deskripsi, logo: $logo, deletedAt: $deletedAt, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -197,6 +229,8 @@ class _$_Ormawa implements _Ormawa {
             other is _$_Ormawa &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.nama, nama) &&
+            const DeepCollectionEquality().equals(other.label, label) &&
+            const DeepCollectionEquality().equals(other.deskripsi, deskripsi) &&
             const DeepCollectionEquality().equals(other.logo, logo) &&
             const DeepCollectionEquality().equals(other.deletedAt, deletedAt) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
@@ -209,6 +243,8 @@ class _$_Ormawa implements _Ormawa {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(nama),
+      const DeepCollectionEquality().hash(label),
+      const DeepCollectionEquality().hash(deskripsi),
       const DeepCollectionEquality().hash(logo),
       const DeepCollectionEquality().hash(deletedAt),
       const DeepCollectionEquality().hash(createdAt),
@@ -229,6 +265,8 @@ abstract class _Ormawa implements Ormawa {
   factory _Ormawa(
       {final int? id,
       final String? nama,
+      final String? label,
+      final String? deskripsi,
       final String? logo,
       @JsonKey(name: 'deleted_at') final dynamic deletedAt,
       @JsonKey(name: 'created_at') final int? createdAt,
@@ -240,6 +278,10 @@ abstract class _Ormawa implements Ormawa {
   int? get id => throw _privateConstructorUsedError;
   @override
   String? get nama => throw _privateConstructorUsedError;
+  @override
+  String? get label => throw _privateConstructorUsedError;
+  @override
+  String? get deskripsi => throw _privateConstructorUsedError;
   @override
   String? get logo => throw _privateConstructorUsedError;
   @override

@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
                 child: PemiraPage(),
               ),
               Center(
-                child: QuickCountPage(),
+                child: CountPage(),
               ),
               Center(
                 child: ProfilePage(),

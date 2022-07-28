@@ -20,8 +20,10 @@ import 'package:supercharged/supercharged.dart';
 import 'dart:developer' as log;
 
 import '../../enum/loading_enum.dart';
+import '../../models/kandidat_model/data_kandidat.dart';
 import '../../models/kandidat_model/kandidat_model.dart';
 import '../../models/mahasiswa_model/mahasiswa_model.dart';
+import '../../models/ormawa_model/ormawa_model.dart';
 import '../../models/pemira_model/pemira_model.dart';
 import '../../provider/facerecognition_provider.dart';
 import '../../provider/ormawa_provider.dart';
@@ -43,3 +45,6 @@ part 'success_page.dart';
 part 'kandidat_page.dart';
 part 'kandidat_details_page.dart';
 part 'profile_calonKetua_page.dart';
+part 'profile_calonWakil_page.dart';
+part 'count_page.dart';
+part 'ormawa_page.dart';

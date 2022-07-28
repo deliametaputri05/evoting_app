@@ -28,28 +28,33 @@ class _PemiraPageState extends State<PemiraPage> {
             Container(
               child: Column(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          child: Image.asset(
-                            'assets/logo_evote.png',
-                            width: 55,
-                            height: 55,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/logo_kpu.png',
+                              width: 55,
+                              height: 55,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'E-Voting',
-                          style: blackFontStyle1.copyWith(
-                              fontSize: 17, fontWeight: FontWeight.w500),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'E-Voting',
+                            style: blackFontStyle1.copyWith(
+                                fontSize: 17, fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'ormawa.dart';
+import 'voting.dart';
 
 part 'pemira_model.freezed.dart';
 part 'pemira_model.g.dart';
@@ -20,6 +21,7 @@ class PemiraModel with _$PemiraModel {
 		@JsonKey(name: 'created_at') int? createdAt,
 		@JsonKey(name: 'updated_at') int? updatedAt,
 		Ormawa? ormawa,
+		Voting? voting,
 	}) = _PemiraModel;
 
 	factory PemiraModel.fromJson(Map<String, dynamic> json) => _$PemiraModelFromJson(json);

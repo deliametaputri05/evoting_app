@@ -10,6 +10,8 @@ _$_OrmawaModel _$$_OrmawaModelFromJson(Map<String, dynamic> json) =>
     _$_OrmawaModel(
       id: json['id'] as int?,
       nama: json['nama'] as String?,
+      label: json['label'] as String?,
+      deskripsi: json['deskripsi'] as String?,
       logo: json['logo'] as String?,
       deletedAt: json['deleted_at'],
       createdAt: json['created_at'] as int?,
@@ -20,6 +22,8 @@ Map<String, dynamic> _$$_OrmawaModelToJson(_$_OrmawaModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'nama': instance.nama,
+      'label': instance.label,
+      'deskripsi': instance.deskripsi,
       'logo': instance.logo,
       'deleted_at': instance.deletedAt,
       'created_at': instance.createdAt,

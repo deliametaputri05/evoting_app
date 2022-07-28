@@ -111,8 +111,11 @@ class PemiraCard extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w500)),
-                              Text(pemiraModel.deskripsi ?? 'Deskripsi Pemira',
-                                  style: TextStyle(fontSize: 10)),
+                              Text(
+                                pemiraModel.deskripsi ?? 'Deskripsi Pemira',
+                                style: TextStyle(fontSize: 10),
+                                maxLines: 2,
+                              ),
                             ],
                           ),
                         ),

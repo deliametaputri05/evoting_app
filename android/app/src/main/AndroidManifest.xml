@@ -2,7 +2,7 @@
     package="com.example.evoting_mobile">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="evoting_mobile"
+        android:label="E-Voting"
         android:name="${applicationName}"
         
         android:icon="@mipmap/ic_launcher">

@@ -92,7 +92,7 @@ class _KandidatPageState extends State<KandidatPage> {
                       padding: EdgeInsets.only(
                         right: 10,
                         left: 20,
-                        top: 100 - scale * 25,
+                        top: 130 - scale * 25,
                         bottom: 50,
                       ),
                       child: Transform(
@@ -110,14 +110,15 @@ class _KandidatPageState extends State<KandidatPage> {
                               onTap: () {
                                 Get.to(
                                   () => KandidatDetailsPage(
-                                    kandidat: data.kandidat[index],
+                                    kandidat: data.kandidat!.data![index],
                                   ),
                                 );
                               },
                               hoverColor: Colors.grey,
                               splashFactory: InkSplash.splashFactory,
                               child: Image.network(
-                                data.kandidat.elementAt(index).foto ?? '',
+                                data.kandidat!.data!.elementAt(index).foto ??
+                                    '',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,
                                 alignment: Alignment(
@@ -125,7 +126,7 @@ class _KandidatPageState extends State<KandidatPage> {
                               ),
                             ),
                             Positioned(
-                              bottom: 50,
+                              bottom: 60,
                               left: MediaQuery.of(context).size.width * 0.25,
                               child: AnimatedOpacity(
                                 opacity: angle == 0 ? 1 : 0,
@@ -143,7 +144,7 @@ class _KandidatPageState extends State<KandidatPage> {
                                       ),
                                     ),
                                     Text(
-                                      data.kandidat
+                                      data.kandidat!.data!
                                           .elementAt(index)
                                           .noUrut
                                           .toString(),
@@ -156,52 +157,116 @@ class _KandidatPageState extends State<KandidatPage> {
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    FloatingActionButton(
-                                      onPressed: () {
-                                        AwesomeDialog(
-                                          context: context,
-                                          dialogType: DialogType.INFO,
-                                          title: 'Ayo Vote',
-                                          desc:
-                                              'Yakin ingin vote kandidat ${data.kandidat.elementAt(index).noUrut.toString()} ?',
-                                          btnCancelOnPress: () {},
-                                          btnOkOnPress: () {
-                                            Provider.of<VotingProvider>(context,
-                                                    listen: false)
-                                                .postVoting(
-                                              data.kandidat
-                                                  .elementAt(index)
-                                                  .id!
-                                                  .toInt(),
-                                              data.kandidat
-                                                  .elementAt(index)
-                                                  .idOrmawa!
-                                                  .toInt(),
-                                              session.read('id'),
-                                              data.kandidat
-                                                  .elementAt(index)
-                                                  .idPemira!
-                                                  .toInt(),
-                                            );
+                                    if (DateTime.parse(data
+                                                    .kandidat!
+                                                    .data![index]
+                                                    .pemira!
+                                                    .tanggal! +
+                                                " " +
+                                                data.kandidat!.data![index]
+                                                    .pemira!.waktuSelesai!)
+                                            .difference(DateTime.now())
+                                            .inMinutes >=
+                                        0)
+                                      Visibility(
+                                        visible:
+                                            !(data.kandidat?.isVoting ?? false),
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            AwesomeDialog(
+                                              context: context,
+                                              dialogType: DialogType.INFO,
+                                              title: 'Ayo Vote !',
+                                              desc:
+                                                  'Yakin ingin vote no urut ${data.kandidat!.data!.elementAt(index).noUrut.toString()} ?',
+                                              btnCancelOnPress: () {},
+                                              btnOkOnPress: () {
+                                                setState(() {
+                                                  Provider.of<VotingProvider>(
+                                                          context,
+                                                          listen: false)
+                                                      .postVoting(
+                                                    data.kandidat!.data!
+                                                        .elementAt(index)
+                                                        .id!
+                                                        .toInt(),
+                                                    data.kandidat!.data!
+                                                        .elementAt(index)
+                                                        .idOrmawa!
+                                                        .toInt(),
+                                                    session.read('id'),
+                                                    data.kandidat!.data!
+                                                        .elementAt(index)
+                                                        .idPemira!
+                                                        .toInt(),
+                                                  );
+                                                });
+                                                // Get.dialog(
+                                                //   AlertDialog(
+                                                //     title: Center(
+                                                //       child: const Text(
+                                                //         'Voting Berhasil',
+                                                //         style: TextStyle(
+                                                //           fontSize: 13,
+                                                //         ),
+                                                //       ),
+                                                //     ),
+                                                //   ),
+
+                                                // );
+                                                // Get.to(() => MainPage());
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) =>
+                                                        AlertDialog(
+                                                          title:
+                                                              Text('Success !'),
+                                                          content: Text(
+                                                              'Berhasil Voting'),
+                                                          actions: <Widget>[
+                                                            ElevatedButton(
+                                                              child: Text('OK'),
+                                                              onPressed: () {
+                                                                setState(() {
+                                                                  Get.to(() =>
+                                                                      MainPage());
+                                                                });
+                                                              },
+                                                            )
+                                                          ],
+                                                        ));
+                                              },
+                                            )..show();
                                           },
-                                        )..show();
-                                      },
-                                      heroTag:
-                                          '${data.kandidat.elementAt(index).id}',
-                                      backgroundColor: mainColor,
-                                      child: Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                        size: 40,
+                                          heroTag:
+                                              '${data.kandidat!.data!.elementAt(index).id}',
+                                          backgroundColor: mainColor,
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Colors.white,
+                                            size: 40,
+                                          ),
+                                          // onPressed: () {
+                                          //   pageController!.previousPage(
+                                          //     duration: Duration(
+                                          //       milliseconds: 500,
+                                          //     ),
+                                          //     curve: Curves.easeIn,
+                                          //   );
+                                          // },
+                                        ),
                                       ),
-                                      // onPressed: () {
-                                      //   pageController!.previousPage(
-                                      //     duration: Duration(
-                                      //       milliseconds: 500,
-                                      //     ),
-                                      //     curve: Curves.easeIn,
-                                      //   );
-                                      // },
+                                    Visibility(
+                                      visible:
+                                          (data.kandidat?.isVoting ?? false),
+                                      child: Text(
+                                        "Sudah Vote",
+                                        style: TextStyle(
+                                          color: mainColor,
+                                          fontWeight: FontWeight.bold,
+                                          // fontSize: 15,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -212,7 +277,7 @@ class _KandidatPageState extends State<KandidatPage> {
                       ),
                     );
                   },
-                  itemCount: data.kandidat.length,
+                  itemCount: data.kandidat!.data!.length,
                 ),
               ),
           ],

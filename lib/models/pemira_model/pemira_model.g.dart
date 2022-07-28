@@ -22,6 +22,9 @@ _$_PemiraModel _$$_PemiraModelFromJson(Map<String, dynamic> json) =>
       ormawa: json['ormawa'] == null
           ? null
           : Ormawa.fromJson(json['ormawa'] as Map<String, dynamic>),
+      voting: json['voting'] == null
+          ? null
+          : Voting.fromJson(json['voting'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PemiraModelToJson(_$_PemiraModel instance) =>
@@ -38,4 +41,5 @@ Map<String, dynamic> _$$_PemiraModelToJson(_$_PemiraModel instance) =>
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'ormawa': instance.ormawa,
+      'voting': instance.voting,
     };

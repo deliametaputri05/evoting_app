@@ -12,7 +12,7 @@ class BottomNavbar extends StatefulWidget {
 
 class _BottomNavbarState extends State<BottomNavbar> {
   int _bottomNavCurrentIndex = 0;
-  List<Widget> _container = [PemiraPage(), QuickCountPage(), ProfilePage()];
+  List<Widget> _container = [PemiraPage(), CountPage(), ProfilePage()];
 
   @override
   initState() {
@@ -41,7 +41,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
               rippleColor: Colors.blue[800]!,
-              hoverColor: Colors.purple.withOpacity(0.3),
+              hoverColor: mainColor,
               haptic: true,
               gap: 8,
               activeColor: Colors.black,

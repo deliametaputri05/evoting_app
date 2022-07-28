@@ -23,6 +23,8 @@ class VotingProvider extends ChangeNotifier {
         toast(l.message, gravity: ToastGravity.CENTER);
       }, (r) {
         loadingVoting = LoadingStatus.loaded;
+        notifyListeners();
+        // toast(r.message, gravity: ToastGravity.CENTER);
         // voting = r;
 
         notifyListeners();

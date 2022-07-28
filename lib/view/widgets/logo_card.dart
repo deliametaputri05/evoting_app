@@ -10,6 +10,7 @@ class LogoCard extends StatelessWidget {
       height: 70,
       width: 70,
       child: Card(
+        // color: pemiraModel.voting == null ? null : Colors.green,
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: ClipRRect(
