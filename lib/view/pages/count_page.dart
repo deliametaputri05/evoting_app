@@ -39,175 +39,98 @@ class _CountPageState extends State<CountPage> with TickerProviderStateMixin {
     return Container(
       child: Consumer2<PemiraProvider, KandidatProvider>(
           builder: (context, data, kandidat, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 60, left: 30),
-              child: Row(
-                children: [
-                  Container(
-                    child: Image.asset(
-                      'assets/logo_evote.png',
-                      width: 55,
-                      height: 55,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Quick Count',
-                    style: blackFontStyle1.copyWith(
-                        fontSize: 17, fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
-            if (data.loadingPemira == LoadingStatus.loading)
-              Center(
-                child: CircularProgressIndicator(),
-              ),
-            if (data.loadingPemira == LoadingStatus.error)
-              Center(
-                child: Text('Terjadi kesalahan'),
-              ),
-            if (data.loadingPemira == LoadingStatus.loaded)
+        return Padding(
+          padding: EdgeInsets.only(top: 100),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Padding(
+              //   padding: EdgeInsets.only(top: 60, left: 30),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //         child: Image.asset(
+              //           'assets/logo_evote.png',
+              //           width: 55,
+              //           height: 55,
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 10,
+              //       ),
+              //       Text(
+              //         'Quick Count',
+              //         style: blackFontStyle1.copyWith(
+              //             fontSize: 17, fontWeight: FontWeight.w500),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Center(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  height: 100,
-                  // width: double.infinity,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: data.pemira.map((e) {
-                        return InkWell(
-                          onTap: () {
-                            Provider.of<KandidatProvider>(context,
-                                    listen: false)
-                                .setIdPemira(e.id ?? 1);
-                          },
-                          child: LogoCard(
-                            pemiraModel: e,
-                          ),
-                        );
-                      }).toList(),
-                    ),
+                  child: Image.asset(
+                    'assets/vector_2.png',
+                    width: 200,
                   ),
                 ),
               ),
-            FutureBuilder<KandidatModel?>(
-              future: kandidat.getKandidat(kandidat.idPemira ?? 0),
-              builder: (context, snapshot) {
-                log.log(snapshot.connectionState.toString());
-                if (kandidat.loadingKandidat == LoadingStatus.error)
-                  return Center(
-                    child: Text('Terjadi kesalahan'),
-                  );
-                if (kandidat.kandidat != null)
-                  return Expanded(
-                    child: PageView.builder(
-                      controller: pageController,
-                      itemBuilder: (context, index) {
-                        double scale = max(
-                            viewportFraction,
-                            (1 - (pageOffset! - index).abs()) +
-                                viewportFraction);
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                  child: Text('Hasil Perhitungan Suara',
+                      style: blackFontStyle1.copyWith(
+                          fontSize: 16, fontWeight: FontWeight.bold))),
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                  child: Text(
+                'Klik tombol ormawa\nuntuk melihat hasil perhitungan suara\nsesuai kandidat pada ormawa yang dipilih',
+                style: blackFontStyle1.copyWith(
+                    fontSize: 13, fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              )),
+              SizedBox(
+                height: 30,
+              ),
 
-                        double angle = (pageOffset! - index).abs();
-
-                        if (angle > 0.5) {
-                          angle = 1 - angle;
-                        }
-                        return Container(
-                          // width: 200,
-                          padding: EdgeInsets.only(
-                            right: 10,
-                            left: 20,
-                            top: 100 - scale * 25,
-                            bottom: 50,
-                          ),
-                          child: Transform(
-                            transform: Matrix4.identity()
-                              ..setEntry(
-                                3,
-                                2,
-                                0.001,
-                              )
-                              ..rotateY(angle),
-                            alignment: Alignment.center,
-                            child: Stack(
-                              children: <Widget>[
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(
-                                      () => KandidatDetailsPage(
-                                        kandidat:
-                                            kandidat.kandidat!.data![index],
-                                      ),
-                                    );
-                                  },
-                                  hoverColor: Colors.grey,
-                                  splashFactory: InkSplash.splashFactory,
-                                  child: Image.network(
-                                    kandidat.kandidat!.data!
-                                            .elementAt(index)
-                                            .foto ??
-                                        '',
-                                    width: MediaQuery.of(context).size.width,
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment(
-                                        (pageOffset! - index).abs() * 0.5, 0),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 50,
-                                  left:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  child: AnimatedOpacity(
-                                      opacity: angle == 0 ? 1 : 0,
-                                      duration: Duration(
-                                        milliseconds: 200,
-                                      ),
-                                      child: Column(children: [
-                                        Text(
-                                          'Hasil Suara',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Text(
-                                          kandidat.kandidat!.data!
-                                              .elementAt(index)
-                                              .jumlahSuara
-                                              .toString(),
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ])),
-                                ),
-                              ],
+              if (data.loadingPemira == LoadingStatus.loading)
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+              if (data.loadingPemira == LoadingStatus.error)
+                Center(
+                  child: Text('Terjadi kesalahan'),
+                ),
+              if (data.loadingPemira == LoadingStatus.loaded)
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    height: 200,
+                    // width: double.infinity,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: data.pemira.map((e) {
+                          return InkWell(
+                            onTap: () {
+                              Provider.of<KandidatProvider>(context,
+                                      listen: false)
+                                  .setIdPemira(e.id ?? 1);
+                            },
+                            child: LogoCard(
+                              pemiraModel: e,
                             ),
-                          ),
-                        );
-                      },
-                      itemCount: kandidat.kandidat!.data!.length,
+                          );
+                        }).toList(),
+                      ),
                     ),
-                  );
-                else
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-              },
-            )
-          ],
+                  ),
+                ),
+            ],
+          ),
         );
       }),
     );

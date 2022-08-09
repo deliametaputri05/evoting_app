@@ -157,6 +157,8 @@ class _KandidatPageState extends State<KandidatPage> {
                                     SizedBox(
                                       height: 10,
                                     ),
+
+                                    // pemira sudah dimulai
                                     if (DateTime.parse(data
                                                     .kandidat!
                                                     .data![index]
@@ -201,20 +203,7 @@ class _KandidatPageState extends State<KandidatPage> {
                                                         .toInt(),
                                                   );
                                                 });
-                                                // Get.dialog(
-                                                //   AlertDialog(
-                                                //     title: Center(
-                                                //       child: const Text(
-                                                //         'Voting Berhasil',
-                                                //         style: TextStyle(
-                                                //           fontSize: 13,
-                                                //         ),
-                                                //       ),
-                                                //     ),
-                                                //   ),
 
-                                                // );
-                                                // Get.to(() => MainPage());
                                                 showDialog(
                                                     context: context,
                                                     builder: (context) =>
@@ -228,8 +217,15 @@ class _KandidatPageState extends State<KandidatPage> {
                                                               child: Text('OK'),
                                                               onPressed: () {
                                                                 setState(() {
-                                                                  Get.to(() =>
-                                                                      MainPage());
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  Get.to(
+                                                                      () =>
+                                                                          Count(
+                                                                            id: widget.id,
+                                                                            pemira:
+                                                                                widget.pemira,
+                                                                          ));
                                                                 });
                                                               },
                                                             )
@@ -246,32 +242,69 @@ class _KandidatPageState extends State<KandidatPage> {
                                             color: Colors.white,
                                             size: 40,
                                           ),
-                                          // onPressed: () {
-                                          //   pageController!.previousPage(
-                                          //     duration: Duration(
-                                          //       milliseconds: 500,
-                                          //     ),
-                                          //     curve: Curves.easeIn,
-                                          //   );
-                                          // },
                                         ),
                                       ),
-                                    Visibility(
-                                      visible:
-                                          (data.kandidat?.isVoting ?? false),
-                                      child: Text(
-                                        "Sudah Vote",
-                                        style: TextStyle(
-                                          color: mainColor,
-                                          fontWeight: FontWeight.bold,
-                                          // fontSize: 15,
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
-                            )
+                            ),
+                            if (DateTime.parse(data.kandidat!.data![index]
+                                            .pemira!.tanggal! +
+                                        " " +
+                                        data.kandidat!.data![index].pemira!
+                                            .waktuSelesai!)
+                                    .difference(DateTime.now())
+                                    .inMinutes >=
+                                0)
+                              Visibility(
+                                visible: !(data.kandidat?.isVoting ?? false),
+                                child: Positioned(
+                                    bottom: 20,
+                                    left: MediaQuery.of(context).size.width *
+                                        0.17,
+                                    child: Text('Klik untuk voting',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            color: mainColor))),
+                              ),
+                            // pemira belum dimulai
+                            if (DateTime.parse(data.kandidat!.data![index]
+                                            .pemira!.tanggal! +
+                                        " " +
+                                        data.kandidat!.data![index].pemira!
+                                            .waktuSelesai!)
+                                    .difference(DateTime.now())
+                                    .inMinutes <=
+                                0)
+                              Visibility(
+                                  visible: !(data.kandidat?.isVoting ?? false),
+                                  child: Positioned(
+                                    bottom: 20,
+                                    left: MediaQuery.of(context).size.width *
+                                        0.18,
+                                    child: Text(
+                                      "Pemira dimulai\n${data.kandidat!.data![index].pemira!.tanggal!}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          color: mainColor),
+                                    ),
+                                  )),
+                            Visibility(
+                              visible: (data.kandidat?.isVoting ?? false),
+                              child: Positioned(
+                                bottom: 45,
+                                left: MediaQuery.of(context).size.width * 0.2,
+                                child: Text(
+                                  "Sudah Voting",
+                                  style: TextStyle(
+                                    color: mainColor,
+                                    fontWeight: FontWeight.bold,
+                                    // fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

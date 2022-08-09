@@ -12,7 +12,7 @@ class _FormLoginPageState extends State<FormLoginPage> {
   Future pickImageCamera() async {
     try {
       final image = await ImagePicker().pickImage(
-        source: ImageSource.camera,
+        source: ImageSource.gallery,
         imageQuality: 30,
         preferredCameraDevice: CameraDevice.front,
       );

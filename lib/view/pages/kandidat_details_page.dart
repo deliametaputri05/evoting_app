@@ -189,7 +189,7 @@ class _KandidatDetailsPageState extends State<KandidatDetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        widget.kandidat.calonKetua!.nama ?? '',
+                        widget.kandidat.calonKetua?.nama ?? '',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,

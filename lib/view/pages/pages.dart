@@ -47,4 +47,5 @@ part 'kandidat_details_page.dart';
 part 'profile_calonKetua_page.dart';
 part 'profile_calonWakil_page.dart';
 part 'count_page.dart';
+part 'count.dart';
 part 'ormawa_page.dart';
